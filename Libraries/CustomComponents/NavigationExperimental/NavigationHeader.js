@@ -214,6 +214,10 @@ class NavigationHeader extends React.Component<DefaultProps, Props, any> {
       return null;
     }
 
+    const customStyle =
+      (name === "title" && this.props.leftMargin !== undefined) ?
+      { left: this.props.leftMargin } : null;
+
     const pointerEvents = offset !== 0 || isStale ? 'none' : 'box-none';
     return (
       <Animated.View
@@ -223,6 +227,7 @@ class NavigationHeader extends React.Component<DefaultProps, Props, any> {
           styles[name],
           { marginTop: this.props.statusBarHeight },
           styleInterpolator(props),
+          customStyle,
         ]}>
         {subView}
       </Animated.View>
